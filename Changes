@@ -1,6 +1,8 @@
 Revision history for Perl extension Text::InHTML.
 
+0.0.2  Tue Aug 22 15:09:38 CDT 2006 
+	- fixed SHU mis name space
+
 0.0.1  Mon Aug 21 15:03:13 2006
 	- original version; created by h2xs 1.23 with options
 		-AXc -n Text::InHTML
-

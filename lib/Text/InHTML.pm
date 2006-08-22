@@ -2,7 +2,7 @@ package Text::InHTML;
 
 use strict;
 use warnings;
-use version;our $VERSION = qv('0.0.1');
+use version;our $VERSION = qv('0.0.2');
 
 require Exporter;
 our @ISA = qw(Exporter);
@@ -54,8 +54,8 @@ sub AUTOLOAD {
     die "Could not autoload $AUTOLOAD" if !$format; # only dies when they don't follow the rules    
     $format =~ s{_}{-}g;
 
-    if(eval { require Syntax::Highlighter::Universal; }) {
-        my $hl = Syntax::Highlighter::Universal->new();
+    if(eval { require Syntax::Highlight::Universal; }) {
+        my $hl = Syntax::Highlight::Universal->new();
         $syntax->{'pre_proc'}->($hl) if ref $syntax->{'callbacks'} eq 'CODE';
         return Text::InHTML::encode_whitespace(
             $hl->highlight($format, $string, $syntax->{'callbacks'}), $tabs
@@ -120,13 +120,13 @@ $tabs is the number of spaces a tab should be considered to be, default is 4
 
 =head2 encode_perl, encode_diff, encode_*
 
-You can call Text::InHTML::encode_whatever(), where "whatever" is a "format" as listed under "Processing text" at L<Syntax::Highlighter::Universal> 
+You can call Text::InHTML::encode_whatever(), where "whatever" is a "format" as listed under "Processing text" at L<Syntax::Highlight::Universal> 
 
 Note: if the format has a dash, like "html-css" then you need to call it with an underscore in place of each - like so:
 
     Text::InHTML::encode_html_css()
 
-and it will return HTML that is syntax highlighted (what L<Syntax::Highlighter::Universal> does) *and* retains whitespace (what L<Syntax::Highlighter::Universal> does not do)
+and it will return HTML that is syntax highlighted (what L<Syntax::Highlight::Universal> does) *and* retains whitespace (what L<Syntax::Highlight::Universal> does not do)
 
     my $syntax_highlighted_source_code = Text::InHTML::encode_perl($string); 
 
@@ -140,9 +140,9 @@ and it will return HTML that is syntax highlighted (what L<Syntax::Highlighter::
 
 $tabs is the number of spaces a tab should be considered to be, default is 4
 
-If L<Syntax::Highlighter::Universal> is installed, it calls L<Syntax::Highlighter::Universal>'s highlight method with the given format, othersise it simply does encode_plain()
+If L<Syntax::Highlight::Universal> is installed, it calls L<Syntax::Highlight::Universal>'s highlight method with the given format, othersise it simply does encode_plain()
 
-Additionally $syntax can be a hashref which gives you fine grained control over the L<Syntax::Highlighter::Universal> object.
+Additionally $syntax can be a hashref which gives you fine grained control over the L<Syntax::Highlight::Universal> object.
 
 Its keys and values are as follows:
 
@@ -150,17 +150,17 @@ Its keys and values are as follows:
 
 =item * callbacks
 
-Value is the same as L<Syntax::Highlighter::Universal>'s highlight() method's 3rd argument.
+Value is the same as L<Syntax::Highlight::Universal>'s highlight() method's 3rd argument.
 
 =item * pre_proc
 
-Value is a code ref whose only argument if the  L<Syntax::Highlighter::Universal> object that will next be used to process the $string
+Value is a code ref whose only argument if the  L<Syntax::Highlight::Universal> object that will next be used to process the $string
 
 =back
 
 =head1 SEE ALSO
 
-L<HTML::Entities>, L<Syntax::Highlighter::Universal>
+L<HTML::Entities>, L<Syntax::Highlight::Universal>
 
 =head1 TIPS
 
@@ -168,7 +168,7 @@ L<HTML::Entities>, L<Syntax::Highlighter::Universal>
 
 =item * Wrap the whole thing in a  div that's monospace styled and source code will look real nice!
 
-=item * You'll need to use CSS to color in the highlighted syntax. The L<Syntax::Highlighter::Universal> bundle has some samples and info on how to generate that CSS.
+=item * You'll need to use CSS to color in the highlighted syntax. The L<Syntax::Highlight::Universal> bundle has some samples and info on how to generate that CSS.
 
 =back
 

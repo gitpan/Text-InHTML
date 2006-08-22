@@ -4,4 +4,4 @@ MANIFEST
 README
 t/Text-InHTML.t
 lib/Text/InHTML.pm
-META.yml                                 Module meta-data (added by MakeMaker)
+META.yml   
