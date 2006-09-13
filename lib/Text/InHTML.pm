@@ -2,7 +2,7 @@ package Text::InHTML;
 
 use strict;
 use warnings;
-use version;our $VERSION = qv('0.0.2');
+use version;our $VERSION = qv('0.0.3');
 
 require Exporter;
 our @ISA = qw(Exporter);
