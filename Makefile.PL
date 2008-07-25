@@ -6,7 +6,6 @@ WriteMakefile(
     PREREQ_PM         => {
         'version'                      => 0,
         'HTML::Entities'               => 0,
-        'Syntax::Highlight::Universal' => 0,
     },
     ($] >= 5.005 ?     
       (ABSTRACT_FROM  => 'lib/Text/InHTML.pm', # retrieve abstract from module

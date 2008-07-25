@@ -2,7 +2,7 @@ package Text::InHTML;
 
 use strict;
 use warnings;
-use version;our $VERSION = qv('0.0.3');
+use version;our $VERSION = qv('0.0.4');
 
 require Exporter;
 our @ISA = qw(Exporter);
@@ -41,7 +41,7 @@ sub encode_plain {
     my ($string, $tabs) = @_;
     require HTML::Entities;
     return Text::InHTML::encode_whitespace( 
-        HTML::Entities::encode($string), $tabs 
+        HTML::Entities::encode($string, '<>&"'), $tabs 
     );
 }
 
@@ -171,6 +171,10 @@ L<HTML::Entities>, L<Syntax::Highlight::Universal>
 =item * You'll need to use CSS to color in the highlighted syntax. The L<Syntax::Highlight::Universal> bundle has some samples and info on how to generate that CSS.
 
 =back
+
+=head1 TODO
+
+Function(s) to facilitate javascript highlighters like google's syntax highlighter framework.
 
 =head1 AUTHOR
 
